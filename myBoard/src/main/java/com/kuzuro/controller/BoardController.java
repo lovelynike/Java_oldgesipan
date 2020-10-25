@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kuzuro.domain.BoardVO;
 import com.kuzuro.service.BoardService;
@@ -47,6 +48,17 @@ public class BoardController {
 	  List<BoardVO> list = service.list();
 	  
 	  model.addAttribute("list", list);
+	 }
+	 
+	 // 글 조회
+	 @RequestMapping(value = "/read", method = RequestMethod.GET)
+	 public void getRead(@RequestParam("bno") int bno, Model model) throws Exception {
+	  logger.info("get read");
+	  
+	  BoardVO vo = service.read(bno);
+	  
+	  model.addAttribute("read", vo);
+	  
 	 }
 
 }

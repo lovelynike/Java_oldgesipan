@@ -33,10 +33,9 @@
 				<c:forEach items="${list}" var="list">
 					<tr>
 						<td>${list.bno}</td>
-						<td>${list.title}</td>
+						<td><a href="/board/read?bno=${list.bno}">${list.title}</a></td>
 						<td>${list.writer}</td>
-						<td><fmt:formatDate value="${list.regDate}"
-								pattern="yyyy-MM-dd" /></td>
+						<td><fmt:formatDate value="${list.regDate}"	pattern="yyyy-MM-dd" /></td>
 					</tr>
 				</c:forEach>
 				<!-- 목록 끝 -->
