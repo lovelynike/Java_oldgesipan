@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.kuzuro.domain.BoardVO;
 import com.kuzuro.domain.Criteria;
 import com.kuzuro.domain.PageMaker;
+import com.kuzuro.domain.SearchCriteria;
 import com.kuzuro.service.BoardService;
 
 @Controller
@@ -120,6 +121,21 @@ public class BoardController {
 	  pageMaker.setTotalCount(service.listCount());
 	  model.addAttribute("pageMaker", pageMaker);
 	  
+	 }
+	 
+	// 글 목록 + 페이징 + 검색
+	 @RequestMapping(value = "/listSearch", method = RequestMethod.GET)
+	 public void listPage(@ModelAttribute("scri") SearchCriteria scri, Model model) throws Exception {
+	  logger.info("get list search");
+	  
+	  List<BoardVO> list = service.listSearch(scri);
+	  model.addAttribute("list", list);
+	  
+	  PageMaker pageMaker = new PageMaker();
+	  pageMaker.setCri(scri);
+	  //pageMaker.setTotalCount(service.listCount());
+	  pageMaker.setTotalCount(service.countSearch(scri));
+	  model.addAttribute("pageMaker", pageMaker);
 	 }
 
 }

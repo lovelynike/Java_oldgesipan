@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 import com.kuzuro.domain.BoardVO;
 import com.kuzuro.domain.Criteria;
+import com.kuzuro.domain.SearchCriteria;
 
 @Repository
 public class BoardDAOImpl implements BoardDAO {
@@ -59,6 +60,18 @@ public class BoardDAOImpl implements BoardDAO {
 	public int listCount() throws Exception {
 		
 		return sql.selectOne(namespace + ".listCount");
+	}
+
+	@Override
+	public List<BoardVO> listSearch(SearchCriteria scri) throws Exception {
+		
+		return sql.selectList(namespace + ".listSearch", scri);
+	}
+
+	@Override
+	public int countSearch(SearchCriteria scri) throws Exception {
+		
+		return sql.selectOne(namespace + ".countSearch", scri);
 	}
 
 }

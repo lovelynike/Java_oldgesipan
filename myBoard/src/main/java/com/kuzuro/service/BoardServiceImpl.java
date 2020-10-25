@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.kuzuro.domain.BoardVO;
 import com.kuzuro.domain.Criteria;
+import com.kuzuro.domain.SearchCriteria;
 import com.kuzuro.persistence.BoardDAO;
 
 @Service
@@ -57,6 +58,18 @@ public class BoardServiceImpl implements BoardService {
 	public int listCount() throws Exception {
 		
 		return dao.listCount();
+	}
+
+	@Override
+	public List<BoardVO> listSearch(SearchCriteria scri) throws Exception {
+		
+		return dao.listSearch(scri);
+	}
+
+	@Override
+	public int countSearch(SearchCriteria scri) throws Exception {
+		
+		return dao.countSearch(scri);
 	}
 
 }

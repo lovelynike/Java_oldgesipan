@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.kuzuro.domain.BoardVO;
 import com.kuzuro.domain.Criteria;
+import com.kuzuro.domain.SearchCriteria;
 
 public interface BoardService {
 	
@@ -27,5 +28,11 @@ public interface BoardService {
 	 
 	 // 게시물 총 갯수
 	 public int listCount() throws Exception;
+	 
+	 // 목록 + 페이징 + 검색
+	 public List<BoardVO> listSearch(SearchCriteria scri) throws Exception;
+	 
+	 // 검색 결과 갯수
+	 public int countSearch(SearchCriteria scri) throws Exception;
 
 }
