@@ -8,11 +8,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kuzuro.domain.BoardVO;
+import com.kuzuro.domain.Criteria;
+import com.kuzuro.domain.PageMaker;
 import com.kuzuro.service.BoardService;
 
 @Controller
@@ -100,6 +103,23 @@ public class BoardController {
 	  service.delete(bno);
 	  
 	  return "redirect:/board/list";
+	 }
+	 
+	 
+	 
+	// 글 목록 + 페이징
+	 @RequestMapping(value = "/listPage", method = RequestMethod.GET)
+	 public void listPage(@ModelAttribute("cri") Criteria cri, Model model) throws Exception {
+	  logger.info("get list page");
+	  
+	  List<BoardVO> list = service.listPage(cri);
+	  model.addAttribute("list", list);
+	  
+	  PageMaker pageMaker = new PageMaker();
+	  pageMaker.setCri(cri);
+	  pageMaker.setTotalCount(service.listCount());
+	  model.addAttribute("pageMaker", pageMaker);
+	  
 	 }
 
 }

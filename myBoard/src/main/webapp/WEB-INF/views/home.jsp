@@ -8,5 +8,6 @@
 <body>
 	<a href="/board/write">글 작성</a>
 	<a href="/board/list">글 목록</a>
+	<a href="/board/listPage">글 목록 + 페이징</a>
 </body>
 </html>

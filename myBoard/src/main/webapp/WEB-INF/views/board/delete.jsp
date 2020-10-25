@@ -14,12 +14,12 @@
 
 	<div id="root">
 		<header>
-			<h1>kuzuro 게시판</h1>
+			<%@include file="include/header.jsp" %>
 		</header>
 
 		<hr />
 
-		<nav>처음화면 - 글쓰기 - 로그인</nav>
+		<nav><%@include file="include/nav.jsp" %></nav>
 
 		<hr />
 
@@ -64,7 +64,7 @@
 		<hr />
 
 		<footer>
-			<p>만든이 : kuzuro</p>
+			<%@include file="include/footer.jsp" %>
 		</footer>
 
 	</div>

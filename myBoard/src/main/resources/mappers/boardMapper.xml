@@ -38,5 +38,20 @@
 	<select id="list" resultType="com.kuzuro.domain.BoardVO">
 		select bno, title, writer, regdate from myboard order by bno desc
 	</select>
+	
+	<!-- 페이징 -->
+	<select id="listPage" resultType="com.kuzuro.domain.BoardVO" parameterType="com.kuzuro.domain.Criteria">
+		select bno, title, content, writer, regDate, viewCnt 
+		from (select bno, title, content, writer, regDate, viewCnt, row_number() over(order by bno desc) as rNum from myBoard) mb 
+		where rNum between #{rowStart} and #{rowEnd} order by bno desc
+	</select>
+	
+	<select id="listCount" resultType="int">
+		<![CDATA[
+			select count(bno)
+				from myBoard
+					where bno > 0
+		]]>	
+	</select>
 
 </mapper>

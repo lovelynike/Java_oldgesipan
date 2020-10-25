@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.kuzuro.domain.BoardVO;
+import com.kuzuro.domain.Criteria;
 import com.kuzuro.persistence.BoardDAO;
 
 @Service
@@ -44,5 +45,18 @@ public class BoardServiceImpl implements BoardService {
 	 public List<BoardVO> list() throws Exception {
 	  return dao.list();
 	 }
+	 
+	 // 목록  + 페이징
+	@Override
+	public List<BoardVO> listPage(Criteria cri) throws Exception {
+		
+		return dao.listPage(cri);
+	}
+
+	@Override
+	public int listCount() throws Exception {
+		
+		return dao.listCount();
+	}
 
 }
