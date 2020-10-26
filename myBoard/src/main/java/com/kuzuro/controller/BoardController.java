@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kuzuro.domain.BoardVO;
 import com.kuzuro.domain.Criteria;
@@ -56,54 +57,73 @@ public class BoardController {
 	 
 	 // 글 조회
 	 @RequestMapping(value = "/read", method = RequestMethod.GET)
-	 public void getRead(@RequestParam("bno") int bno, Model model) throws Exception {
+	 public void getRead(@RequestParam("bno") int bno, 
+			 @ModelAttribute("scri") SearchCriteria scri,
+			 Model model) throws Exception {
+	  
 	  logger.info("get read");
 	  
 	  BoardVO vo = service.read(bno);
 	  
 	  model.addAttribute("read", vo);
 	  
+	  model.addAttribute("scri", scri);
+	  
 	 }
 	 
 	 // 글 수 정
 	 @RequestMapping(value = "/modify", method = RequestMethod.GET)
-	 public void getModify(@RequestParam("bno") int bno, Model model) throws Exception {
+	 public void getModify(@RequestParam("bno") int bno, @ModelAttribute("scri") SearchCriteria scri, Model model) throws Exception {
 	  logger.info("get modify");
 	  
 	  BoardVO vo = service.read(bno);
 	  
 	  model.addAttribute("modify", vo);
+	  model.addAttribute("scri", scri);
 	  
 	 } 
 	 
 	 // 글 삭제
 	 @RequestMapping(value = "/delete", method = RequestMethod.GET)
-	 public void getDelete(@RequestParam("bno") int bno, Model model) throws Exception {
+	 public void getDelete(@RequestParam("bno") int bno, @ModelAttribute("scri") SearchCriteria scri, Model model) throws Exception {
 	  logger.info("get delete");
 	    
 	  model.addAttribute("delete", bno);
+	  model.addAttribute("scri", scri);
 	  
 	 }
 	 
 	 // 글 수정  POST 
 	 @RequestMapping(value = "/modify", method = RequestMethod.POST)
-	 public String postModify(BoardVO vo) throws Exception {
+	 public String postModify(BoardVO vo,
+			 @ModelAttribute("scri") SearchCriteria scri, RedirectAttributes rttr) throws Exception {
 	  logger.info("post modify");
 	  
 	  service.update(vo);
 	  
-	  return "redirect:/board/list";
+	  rttr.addAttribute("page", scri.getPage());
+	  rttr.addAttribute("perPageNum", scri.getPerPageNum());
+	  rttr.addAttribute("searchType", scri.getSearchType());
+	  rttr.addAttribute("keyword", scri.getKeyword());
+	  
+	  return "redirect:/board/listSearch";
 	  
 	 }
 
 	 // 글 삭제  POST
 	 @RequestMapping(value = "/delete", method = RequestMethod.POST)
-	 public String postDelete(@RequestParam("bno") int bno) throws Exception {
+	 public String postDelete(@RequestParam("bno") int bno,
+			 @ModelAttribute("scri") SearchCriteria scri, RedirectAttributes rttr) throws Exception {
 	  logger.info("post delete");
 	    
 	  service.delete(bno);
 	  
-	  return "redirect:/board/list";
+	  rttr.addAttribute("page", scri.getPage());
+	  rttr.addAttribute("perPageNum", scri.getPerPageNum());
+	  rttr.addAttribute("searchType", scri.getSearchType());
+	  rttr.addAttribute("keyword", scri.getKeyword());
+	  
+	  return "redirect:/board/listSearch";
 	 }
 	 
 	 

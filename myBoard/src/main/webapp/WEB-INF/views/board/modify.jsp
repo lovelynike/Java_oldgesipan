@@ -25,11 +25,11 @@
 
 		<section id="container">
 
-			<form role="form" method="post" autocomplete="off">
+			<form role="form" method="post" autocomplete="off" id="frm">
 
 				<p>
-					<label for="bno">글 번호</label> <input type="text" id="bno"
-						name="bno" value="${modify.bno}" readonly="readonly" />
+					<label for="bno">글 번호</label> 
+					<input type="text" id="bno" name="bno" value="${modify.bno}" readonly="readonly" />
 				</p>
 
 
@@ -44,24 +44,26 @@
 				<p>
 					<label for="writer">작성자</label> <input type="text" id="writer"
 						name="writer" value="${modify.writer}" readonly="readonly" /><br />
-					<label>작성 날짜</label> <span><fmt:formatDate
-							value="${modify.regDate}" pattern="yyyy-MM-dd" /></span>
+					<label>작성 날짜</label> 
+					<span><fmt:formatDate value="${modify.regDate}" pattern="yyyy-MM-dd" /></span>
 				</p>
 				<p>
-					<button type="submit">수정</button>
-					<button id="cancel_btn">취소</button>
-
+				
+					<input type="submit" value="수정" />
+					<input type="button" id="cancel_btn" value="취소" />
+					
 					<script>
-						// 폼을 변수에 저장
-						var formObj = $("form[role='form']");
+						/* // 폼을 변수에 저장
+						var formObj = $("form[role='form']"); */
 
 						// 취소 버튼 클릭
-						$("#cancel_btn").click(
-								function() {
-									formObj.attr("action", "/board/read?bno="
-											+ $("#bno").val());
-									formObj.attr("method", "get");
-									formObj.submit();
+						$("#cancel_btn").click(function() {
+							
+							self.location = "/board/read?bno=${modify.bno}"
+								   + "&page=${scri.page}"
+								   + "&perPageNum=${scri.perPageNum}"
+								   + "&searchType=${scri.searchType}"
+								   + "&keyword=${scri.keyword}";
 								});
 					</script>
 				</p>

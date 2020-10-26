@@ -36,24 +36,30 @@
 
 				<p>
 
-					<button type="submit">예, 삭제합니다.</button>
+					<!-- <button type="submit">예, 삭제합니다.</button>
 					<br />
-					<button id="cancel_btn">아니오, 삭제하지 않습니다.</button>
+					<button id="cancel_btn">아니오, 삭제하지 않습니다.</button> -->
+					<input type="submit" value="예, 삭제합니다." /> 
+					<br /> 
+					<input type="button" id="cancel_btn" value="아니오, 삭제하지 않습니다." />
 
 
 					<script>
 
-    // 폼을 변수에 저장
-    var formObj = $("form[role='form']"); 
-    
-    // 취소 버튼 클릭
-    $("#cancel_btn").click(function(){   
-     formObj.attr("action", "/board/read?bno=" + $("#bno").val());
-     formObj.attr("method", "get");  
-     formObj.submit();     
-     
-    });
-    </script>
+						// 폼을 변수에 저장
+						var formObj = $("form[role='form']");
+
+						// 취소 버튼 클릭
+						$("#cancel_btn").click(
+								function() {
+									self.location = "/board/read?bno=${delete}"
+											+ "&page=${scri.page}"
+											+ "&perPageNum=${scri.perPageNum}"
+											+ "&searchType=${scri.searchType}"
+											+ "&keyword=${scri.keyword}";
+
+								});
+					</script>
 
 				</p>
 
