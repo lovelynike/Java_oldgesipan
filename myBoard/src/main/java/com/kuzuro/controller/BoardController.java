@@ -3,6 +3,7 @@ package com.kuzuro.controller;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,8 +37,17 @@ public class BoardController {
 
 	// 글 작성 get
 	@RequestMapping(value = "/write", method = RequestMethod.GET)
-	public void getWrite() throws Exception {
+	public void getWrite(HttpSession session, Model model) throws Exception {
 		logger.info("get write");
+		
+		//세션의 타입은 오브젝트
+		Object loginInfo = session.getAttribute("member");
+		
+		if(loginInfo == null) {
+			//지금까지 false(부정)만 사용했지만, 이렇게 문자열을 넣어서 사용할수도 있습니다.
+			//model.addAttribute("msg", false);
+			model.addAttribute("msg", "login_error");
+		}
 	}
 
 	// 글 작성 post
