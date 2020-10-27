@@ -1,2 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-처음화면 - 글쓰기 - 로그인
+
+
+<ul class="nav nav-pills">
+	<li><a href="/board/write">글 작성</a></li>
+	<li><a href="/board/list">글목록</a></li>
+	<li><a href="/board/listPage">글 목록 + 페이징</a></li>
+	<li><a href="/board/listSearch">글 목록 + 페이징 + 검색</a></li>
+	<li><a href="">로그인</a></li>
+</ul>
