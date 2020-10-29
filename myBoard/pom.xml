@@ -127,6 +127,16 @@
    <scope>test</scope>
   </dependency>
    -->
+   
+   
+   <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+	<!-- 제이슨 -->
+	<dependency>
+		<groupId>com.fasterxml.jackson.core</groupId>
+		<artifactId>jackson-databind</artifactId>
+		<version>2.9.6</version>
+	</dependency>
+		
 		
 		
 	<!-- 자바 버전과 스프링 버전, JUnit 버전을 수정하였고, 오라클 드라이버와 Spring JDBC, 스프링 Test, log4jdbc, mybatis, mybatis-Spring을 추가하였습니다. -->

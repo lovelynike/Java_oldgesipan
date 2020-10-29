@@ -40,4 +40,10 @@ public class MemberDAOImpl implements MemberDAO {
 	public void withdrawal(MemberVO vo) throws Exception {
 		sql.delete(namespace + ".withdrawal", vo);
 	}
+
+	@Override
+	public MemberVO idCheck(String userId) throws Exception {
+		
+		return sql.selectOne(namespace + ".idCheck", userId);
+	}
 }

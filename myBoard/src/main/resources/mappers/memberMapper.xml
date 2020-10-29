@@ -37,4 +37,10 @@ values(#{userId}, #{userPass}, #{userName})
 	        and userPass = #{userPass}
 </delete>
 
+<!-- 아이디 확인 -->
+<select id="idCheck" resultType="com.kuzuro.domain.MemberVO">
+select userId from myMember
+where userId = #{userId}
+</select>
+
 </mapper>

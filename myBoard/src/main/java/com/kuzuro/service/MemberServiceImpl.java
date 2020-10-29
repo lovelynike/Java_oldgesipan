@@ -38,4 +38,13 @@ public class MemberServiceImpl implements MemberService {
 	public void withdrawal(MemberVO vo) throws Exception {
 		dao.withdrawal(vo);
 	}
+	
+	// 아이디 확인
+	@Override
+	public MemberVO idCheck(String userId) throws Exception {
+		
+		return dao.idCheck(userId);
+	}
+	
+	
 } 
