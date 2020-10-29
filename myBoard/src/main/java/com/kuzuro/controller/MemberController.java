@@ -104,7 +104,12 @@ public String postWithdrawal(HttpSession session, MemberVO vo, RedirectAttribute
 	
 	String oldPass = member.getUserPass();
 	String newPass = vo.getUserPass();
-					
+	
+	
+	/*
+	 * 더블 이퀄(==)로 비교할 땐 변수가 사용하는 주소를 비교하는것이며, 위의 코드처럼 .equals() 을 사용하면 변수가 가진 값 자체를
+	 * 비교하게 됩니다.
+	 */
 	if(!(oldPass.equals(newPass))) {
 		rttr.addFlashAttribute("msg", false);
 		return "redirect:/member/withdrawal";
